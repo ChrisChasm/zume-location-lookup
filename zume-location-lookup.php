@@ -1,6 +1,6 @@
 <?php
 /*
-   Plugin Name: Location Lookup
+   Plugin Name: Zume Location Lookup
    Plugin URI: http://wordpress.org/extend/plugins/location-lookup/
    Version: 0.1
    Author: Chris Chasm

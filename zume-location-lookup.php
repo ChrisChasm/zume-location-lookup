@@ -98,8 +98,6 @@ class Location_Lookup {
             require_once('admin/tabs.php');
             $this->tabs = Location_Lookup_Tabs::instance();
             require_once('admin/tab-state.php');
-            require_once('admin/tab-public-data.php');
-            require_once('admin/tab-ip-address.php');
             require_once('admin/tab-maintenance.php');
             require_once('admin/tab-js-tract-lookup.php');
 
@@ -121,11 +119,6 @@ class Location_Lookup {
         require_once ('includes/rest-api.php');
         $this->rest = Location_Lookup_REST_API::instance();
 
-        // Register post type
-        require_once('includes/class-location-post-type.php');
-        $this->location = Location_Lookup_Location_Post_Type::instance();
-        require_once('includes/locations-post-type-metabox.php');
-        $this->ll_metabox = new Location_Lookup_Metabox();
 
     } // End __construct()
 

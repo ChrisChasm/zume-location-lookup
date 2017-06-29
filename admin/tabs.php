@@ -55,7 +55,7 @@ class Location_Lookup_Tabs {
      * Load Admin menu into Settings
      */
     public function load_admin_menu_item () {
-        add_submenu_page( 'edit.php?post_type=locations', __( 'Tools', 'disciple_tools' ), __( 'Tools', 'disciple_tools' ), 'manage_options', 'location_lookup', array( $this, 'page_content' ) );
+        add_submenu_page( 'edit.php?post_type=locations', __( 'Zume Tools', 'disciple_tools' ), __( 'Zume Tools', 'disciple_tools' ), 'manage_options', 'location_lookup', array( $this, 'page_content' ) );
     }
 
     /**
@@ -89,13 +89,6 @@ class Location_Lookup_Tabs {
         if ($tab == 'state' || !isset($tab) ) {$html .= 'nav-tab-active';}
         $html .= '">State</a>';
 
-        $html .= $tab_link_pre . 'ip' . $tab_link_post;
-        if ($tab == 'ip') {$html .= 'nav-tab-active';}
-        $html .= '">IP Address</a>';
-
-        $html .= $tab_link_pre . 'public' . $tab_link_post;
-        if ($tab == 'public') {$html .= 'nav-tab-active';}
-        $html .= '">Public Data</a>';
 
         $html .= $tab_link_pre . 'maintenance' . $tab_link_post;
         if ($tab == 'maintenance') {$html .= 'nav-tab-active';}
@@ -117,16 +110,8 @@ class Location_Lookup_Tabs {
                 $class_object = new Location_Lookup_State();
                 $html .= ''. $class_object->page_contents();
                 break;
-            case "public":
-                $class_object = new Location_Lookup_Public_Data();
-                $html .= ''. $class_object->page_contents();
-                break;
             case "js_tract":
                 $class_object = new Location_Lookup_JS_Tract_Lookup();
-                $html .= ''. $class_object->page_contents();
-                break;
-            case "ip":
-                $class_object = new Location_Lookup_IP_Tab();
                 $html .= ''. $class_object->page_contents();
                 break;
             case "maintenance":

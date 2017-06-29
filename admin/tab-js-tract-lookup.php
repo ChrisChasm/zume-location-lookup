@@ -86,7 +86,7 @@ class Location_Lookup_JS_Tract_Lookup {
             jQuery(document).ready(function() {
                 jQuery('button').click( function () {
                     var address = jQuery('#address').val();
-                    jQuery.post( "http://zume:8888/wp-json/lookup/v1/tract/gettractmap", { address: address })
+                    jQuery.post( "<?php echo get_site_url(); ?>/wp-json/lookup/v1/tract/gettractmap", { address: address })
                         .done(function( data ) {
                             jQuery('#search-response').html('We found that your tract is ' + data.geoid );
 

@@ -66,12 +66,14 @@ class Location_Lookup_REST_API {
             array(
                 'methods'         => WP_REST_Server::CREATABLE,
                 'callback'        => array( $this, 'get_tract_map' ),
+
             ),
         ) );
         register_rest_route( $namespace, '/' . $base. '/getmapbygeoid', array(
             array(
                 'methods'         => WP_REST_Server::CREATABLE,
                 'callback'        => array( $this, 'get_map_by_geoid' ),
+
             ),
         ) );
     }

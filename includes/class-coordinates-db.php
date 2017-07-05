@@ -20,15 +20,27 @@ class Location_Lookup_Coordinates_DB {
             return 'post type locations is not registered';
 
         // SELECT post_content FROM wp_posts WHERE post_title = '39049002770'
-        $coordinates = $wpdb->get_row($wpdb->prepare(
-            'SELECT post_content 
+        $result = $wpdb->get_var($wpdb->prepare(
+            'SELECT meta_value 
               FROM %1$s 
-              WHERE post_title = \'%2$s\'',
-            $wpdb->posts,
-            $geoid
-        ), ARRAY_A );
+              WHERE meta_key = \'%2$s\'',
+            $wpdb->postmeta,
+            'polygon_'.$geoid
+        ));
 
-        return $coordinates['post_content'];
+        $result = substr(trim($result), 1, -1);
+        $placemarks = explode('},{', $result); // create array from coordinates string
+
+        $coordinates = array();
+        foreach ($placemarks as $va) {
+            if (!empty($va)) {
+                $coord = explode(', ', $va);
+                $lng = explode(' ', $coord[0]);
+                $lat = explode(' ', $coord[1]);
+                $coordinates[] = array('lat' => (float)$lat[1], 'lng' => (float)$lng[1]);
+            }
+        }
+        return $coordinates;
     }
 
     /**

@@ -107,6 +107,7 @@ class Location_Lookup {
         // Helper
         require_once ('includes/class-map.php');
         require_once('includes/class-coordinates-kml.php');
+        require_once('includes/class-coordinates-db.php');
         require_once('includes/functions.php');
         require_once('includes/class-placemark-info.php');
 

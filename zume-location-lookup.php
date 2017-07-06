@@ -105,17 +105,14 @@ class Location_Lookup {
         }
 
         // Helper
-        require_once ('includes/class-map.php');
-        require_once('includes/class-coordinates-kml.php');
-        require_once('includes/class-coordinates-db.php');
+//        require_once('includes/class-map.php');
+//        require_once('includes/class-coordinates-kml.php');
+//        require_once('includes/class-coordinates-db.php');
         require_once('includes/functions.php');
         require_once('includes/class-placemark-info.php');
 
 
-        // APIs
-        require_once('includes/class-census-geolocation-api.php');
-        require_once('includes/class-google-geolocation-api.php');
-
+        // API
         require_once('includes/rest-controller.php');
         require_once ('includes/rest-api.php');
         $this->rest = Location_Lookup_REST_API::instance();

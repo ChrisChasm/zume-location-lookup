@@ -16,7 +16,7 @@ class Location_Lookup_Controller {
      */
     public static function get_tract_by_address ($address) {
 
-        $google_result = Location_Lookup_Google_Geolocation::query_google_api($address, $type = 'core'); // get google api info
+        $google_result = Disciple_Tools_Google_Geolocation::query_google_api($address, $type = 'core'); // get google api info
         if ($google_result == 'ZERO_RESULTS') {
             return array(
                 'status' => 'ZERO_RESULTS',
@@ -24,7 +24,7 @@ class Location_Lookup_Controller {
             );
         }
 
-        $census_result = Location_Lookup_Census_Geolocation::query_census_api($google_result['lng'], $google_result['lat'], $type = 'core'); // get census api data
+        $census_result = Disciple_Tools_Census_Geolocation::query_census_api($google_result['lng'], $google_result['lat'], $type = 'core'); // get census api data
         if ($census_result == 'ZERO_RESULTS') {
             return array(
                 'status' => 'ZERO_RESULTS',
@@ -46,7 +46,7 @@ class Location_Lookup_Controller {
     public static function get_tract_map ($address) {
 
         // Google API
-        $google_result = Location_Lookup_Google_Geolocation::query_google_api($address, $type = 'core'); // get google api info
+        $google_result = Disciple_Tools_Google_Geolocation::query_google_api($address, $type = 'core'); // get google api info
         if ($google_result == 'ZERO_RESULTS') {
             return array(
                 'status' => 'ZERO_RESULTS',
@@ -58,7 +58,7 @@ class Location_Lookup_Controller {
         $formatted_address = $google_result['formatted_address'];
 
         // Census API
-        $census_result = Location_Lookup_Census_Geolocation::query_census_api($lng, $lat, $type = 'core'); // get census api data
+        $census_result = Disciple_Tools_Census_Geolocation::query_census_api($lng, $lat, $type = 'core'); // get census api data
         if ($census_result == 'ZERO_RESULTS') {
             return array(
                 'status' => 'ZERO_RESULTS',
@@ -71,11 +71,7 @@ class Location_Lookup_Controller {
         $county = $census_result['county'];
 
         // Boundary data
-        if (get_option('_db_option_type') == 'WPDB') {
-            $coordinates = Location_Lookup_Coordinates_DB::get_db_coordinates( $geoid); // return coordinates from database
-        } else {
-            $coordinates = Location_Lookup_Coordinates_KML::get_tract_kml_coordinates( $geoid, $state ); // return coordinates from KML files
-        }
+        $coordinates = Disciple_Tools_Coordinates_DB::get_db_coordinates( $geoid); // return coordinates from database
 
         return array(
             'status' => 'OK',
@@ -102,14 +98,9 @@ class Location_Lookup_Controller {
         $lat = $params['lat'];
         $state = substr($geoid, 0, 2);
 
-
-
         // Boundary data
-        if (get_option('_db_option_type') == 'WPDB') {
-            $coordinates = Location_Lookup_Coordinates_DB::get_db_coordinates( $geoid); // return coordinates from database
-        } else {
-            $coordinates = Location_Lookup_Coordinates_KML::get_tract_kml_coordinates( $geoid, $state ); // return coordinates from KML files
-        }
+        $coordinates = Disciple_Tools_Coordinates_DB::get_db_coordinates( $geoid); // return coordinates from database
+
 
         if(empty($lng) || empty($lat)) {
             $coor = $coordinates[0];

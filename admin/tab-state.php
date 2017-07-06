@@ -74,15 +74,11 @@ class Location_Lookup_State {
             $directory = get_data_file_directory_LL ();
             $address = $directory->USA_tracts->{$_POST['states-dropdown']}->name;
 
-            $google_result = Location_Lookup_Google_Geolocation::query_google_api($address, $type = 'coordinates_only'); // get google api coordinates
+            $google_result = Disciple_Tools_Google_Geolocation::query_google_api($address, $type = 'coordinates_only'); // get google api coordinates
 
-            if (get_option('_db_option_type') == 'WPDB') {
-                $coordinates = Location_Lookup_Coordinates_DB::get_db_state( $state ); // return coordinates from database
-            } else {
-                $coordinates = Location_Lookup_Coordinates_KML::get_tract_kml_state( $state ); // return coordinates from KML files
-            }
+            $coordinates = Disciple_Tools_Coordinates_DB::get_db_state( $state ); // return coordinates from database
 
-            Location_Lookup_Map::get_map('6', $google_result['lng'], $google_result['lat'], $coordinates); // return maps
+            Disciple_Tools_Map::get_map('6', $google_result['lng'], $google_result['lat'], $coordinates); // return maps
 
         }
     }

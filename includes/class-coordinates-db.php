@@ -35,8 +35,8 @@ class Location_Lookup_Coordinates_DB {
         foreach ($placemarks as $va) {
             if (!empty($va)) {
                 $coord = explode(', ', $va);
-                $lng = explode(' ', $coord[0]);
-                $lat = explode(' ', $coord[1]);
+                $lng = explode(' ', $coord[1]);
+                $lat = explode(' ', $coord[0]);
                 $coordinates[] = array('lat' => (float)$lat[1], 'lng' => (float)$lng[1]);
             }
         }

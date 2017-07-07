@@ -55,7 +55,7 @@ class Location_Lookup_Tabs {
      * Load Admin menu into Settings
      */
     public function load_admin_menu_item () {
-        add_submenu_page( 'edit.php?post_type=locations', __( 'Zume Tools', 'disciple_tools' ), __( 'Zume Tools', 'disciple_tools' ), 'manage_options', 'location_lookup', array( $this, 'page_content' ) );
+//        add_submenu_page( 'edit.php?post_type=locations', __( 'Zume Tools', 'disciple_tools' ), __( 'Zume Tools', 'disciple_tools' ), 'manage_options', 'location_lookup', array( $this, 'page_content' ) );
     }
 
     /**
@@ -85,14 +85,14 @@ class Location_Lookup_Tabs {
         if ($tab == 'address_tract' || !isset($tab) ) {$html .= 'nav-tab-active';}
         $html .= '">Address to Tract</a>';
 
-        $html .= $tab_link_pre . 'state' . $tab_link_post;
-        if ($tab == 'state' || !isset($tab) ) {$html .= 'nav-tab-active';}
-        $html .= '">State</a>';
+//        $html .= $tab_link_pre . 'state' . $tab_link_post;
+//        if ($tab == 'state' || !isset($tab) ) {$html .= 'nav-tab-active';}
+//        $html .= '">State</a>';
 
-
-        $html .= $tab_link_pre . 'maintenance' . $tab_link_post;
-        if ($tab == 'maintenance') {$html .= 'nav-tab-active';}
-        $html .= '">Maintenance</a>';
+//
+//        $html .= $tab_link_pre . 'maintenance' . $tab_link_post;
+//        if ($tab == 'maintenance') {$html .= 'nav-tab-active';}
+//        $html .= '">Maintenance</a>';
 
         $html .= '</h2>';
 
@@ -114,10 +114,10 @@ class Location_Lookup_Tabs {
                 $class_object = new Location_Lookup_JS_Tract_Lookup();
                 $html .= ''. $class_object->page_contents();
                 break;
-            case "maintenance":
-                $class_object = new Location_Lookup_Maintenance();
-                $html .= ''. $class_object->page_contents();
-                break;
+//            case "maintenance":
+//                $class_object = new Location_Lookup_Maintenance();
+//                $html .= ''. $class_object->page_contents();
+//                break;
             default:
                 $class_object = new Location_Lookup_JS_Tract_Lookup();
                 $html .= ''. $class_object->page_contents();

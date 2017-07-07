@@ -98,7 +98,6 @@ class Location_Lookup {
             require_once('admin/tabs.php');
             $this->tabs = Location_Lookup_Tabs::instance();
             require_once('admin/tab-state.php');
-            require_once('admin/tab-maintenance.php');
             require_once('admin/tab-js-tract-lookup.php');
 
 
@@ -113,8 +112,8 @@ class Location_Lookup {
 
 
         // API
-        require_once('includes/rest-controller.php');
-        require_once ('includes/rest-api.php');
+        require_once('includes/locations-rest-controller.php');
+        require_once('includes/locations-rest-api.php');
         $this->rest = Location_Lookup_REST_API::instance();
 
 
